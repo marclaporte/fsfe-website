@@ -62,3 +62,17 @@ Join them to spread the message of our community in all over Europe and beyond. 
 ## Build
 
 You can build the fsfe.org website on your own computer to make previews of single pages possible offline and without having to wait for an online website build. A [dedicated wiki page](https://wiki.fsfe.org/TechDocs/Mainpage/BuildLocally) tells you how to do it.
+
+### Building the styles
+
+This project uses [Less](http://lesscss.org/) for styles.  
+Before you can compile the styles,
+you have to [install Less](http://lesscss.org/usage/#command-line-usage-installing).
+
+Then run these commands to compile the Less to CSS:
+
+    # with minification (-x)
+    lessc look/fsfe.less look/fsfe.min.css -x
+    
+    # without minification (e.g. development builds)
+    lessc look/fsfe.less look/fsfe.min.css
