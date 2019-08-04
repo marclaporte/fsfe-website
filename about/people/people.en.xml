@@ -126,11 +126,12 @@
     <email>mirko (at) fsfe (dot) org</email>
   </person>
 
-  <person id="Bonanno">
+  <person id="bonanno">
     <name>Francesco Bonanno</name>
     <country>IT</country>
+    <function group="sicilia">coordinator/m</function>
     <email>mibofra (at) fsfe (dot) org</email>
-  </person> 
+  </person>
 
   <person id="borchardt">
     <name>Jan-Christoph Borchardt</name>
