@@ -13,12 +13,13 @@
       <xsl:variable name="id"><xsl:value-of select="@id"/></xsl:variable>
       <xsl:choose>
 
-        <!-- item is an introductionary text --><!-- TODO -->
+        <!-- item is an introductionary text -->
         <xsl:when test="@introduction = 'yes'">
-          <xsl:element name="p">
+          <xsl:element name="div">
             <xsl:attribute name="id"><xsl:value-of select="$id"/></xsl:attribute>
-            <xsl:attribute name="style">clear: both;</xsl:attribute>
-            <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/text" />
+            <xsl:element name="p">
+              <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/text" />
+            </xsl:element>
           </xsl:element>
         </xsl:when>
 
@@ -26,7 +27,7 @@
         <xsl:otherwise>
           <!-- item -->
           <xsl:element name="div">
-            <xsl:attribute name="class">promoitem row</xsl:attribute>
+            <xsl:attribute name="class">row promoitem</xsl:attribute>
             <xsl:attribute name="id"><xsl:value-of select="$id"/></xsl:attribute>
             <xsl:variable name="year"><xsl:value-of select="@year"/></xsl:variable>
 
@@ -45,7 +46,7 @@
 
             <!-- item details -->
             <xsl:element name="div">
-              <xsl:attribute name="class">promoitemdetails col-md-9</xsl:attribute>
+              <xsl:attribute name="class">col-md-9 promoitemdetails</xsl:attribute>
 
               <!-- Name -->
               <xsl:element name="h4">
@@ -62,13 +63,16 @@
               <!-- Type -->
               <xsl:if test="/buildinfo/document/set/info[@id=$id]/type != ''">
                 <xsl:element name="div">
-                  <xsl:attribute name="class">row col-md-12</xsl:attribute>
-                  <xsl:element name="span">
-                    <xsl:attribute name="class">detail-label</xsl:attribute>
-                    <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-type'" /></xsl:call-template>
-                  </xsl:element>
-                  <xsl:element name="span">
-                    <xsl:value-of select="/buildinfo/document/set/info[@id=$id]/type" />
+                  <xsl:attribute name="class">row</xsl:attribute>
+                  <xsl:element name="div">
+                    <xsl:attribute name="class">col-md-12</xsl:attribute>
+                    <xsl:element name="span">
+                      <xsl:attribute name="class">detail-label</xsl:attribute>
+                      <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-type'" /></xsl:call-template>
+                    </xsl:element>
+                    <xsl:element name="span">
+                      <xsl:value-of select="/buildinfo/document/set/info[@id=$id]/type" />
+                    </xsl:element>
                   </xsl:element>
                 </xsl:element>
               </xsl:if>
@@ -76,13 +80,16 @@
               <!-- Size -->
               <xsl:if test="/buildinfo/document/set/info[@id=$id]/size != ''">
                 <xsl:element name="div">
-                  <xsl:attribute name="class">row col-md-12</xsl:attribute>
-                  <xsl:element name="span">
-                    <xsl:attribute name="class">detail-label</xsl:attribute>
-                    <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-size'" /></xsl:call-template>
-                  </xsl:element>
-                  <xsl:element name="span">
-                    <xsl:value-of select="/buildinfo/document/set/info[@id=$id]/size" />
+                  <xsl:attribute name="class">row</xsl:attribute>
+                  <xsl:element name="div">
+                    <xsl:attribute name="class">col-md-12</xsl:attribute>
+                    <xsl:element name="span">
+                      <xsl:attribute name="class">detail-label</xsl:attribute>
+                      <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-size'" /></xsl:call-template>
+                    </xsl:element>
+                    <xsl:element name="span">
+                      <xsl:value-of select="/buildinfo/document/set/info[@id=$id]/size" />
+                    </xsl:element>
                   </xsl:element>
                 </xsl:element>
               </xsl:if>
@@ -90,13 +97,16 @@
               <!-- Context (e.g Campaign) -->
               <xsl:if test="/buildinfo/document/set/info[@id=$id]/context != ''">
                 <xsl:element name="div">
-                  <xsl:attribute name="class">row col-md-12</xsl:attribute>
-                  <xsl:element name="span">
-                    <xsl:attribute name="class">detail-label</xsl:attribute>
-                    <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-context'" /></xsl:call-template>
-                  </xsl:element>
-                  <xsl:element name="span">
-                    <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/context" />
+                  <xsl:attribute name="class">row</xsl:attribute>
+                  <xsl:element name="div">
+                    <xsl:attribute name="class">col-md-12</xsl:attribute>
+                    <xsl:element name="span">
+                      <xsl:attribute name="class">detail-label</xsl:attribute>
+                      <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-context'" /></xsl:call-template>
+                    </xsl:element>
+                    <xsl:element name="span">
+                      <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/context" />
+                    </xsl:element>
                   </xsl:element>
                 </xsl:element>
               </xsl:if>
@@ -104,18 +114,21 @@
               <!-- Download -->
               <xsl:if test="/buildinfo/document/set/info[@id=$id]/languages != ''">
                 <xsl:element name="div">
-                  <xsl:attribute name="class">row col-md-12</xsl:attribute>
-                  <xsl:element name="span">
-                    <xsl:attribute name="class">detail-label</xsl:attribute>
-                    <xsl:element name="abbr"> <!-- mouseover info text -->
-                      <xsl:attribute name="title">
-                        <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-languages-tooltip'" /></xsl:call-template>
-                      </xsl:attribute>
-                      <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-languages'" /></xsl:call-template>
+                  <xsl:attribute name="class">row</xsl:attribute>
+                  <xsl:element name="div">
+                    <xsl:attribute name="class">col-md-12</xsl:attribute>
+                    <xsl:element name="span">
+                      <xsl:attribute name="class">detail-label</xsl:attribute>
+                      <xsl:element name="abbr"> <!-- mouseover info text -->
+                        <xsl:attribute name="title">
+                          <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-languages-tooltip'" /></xsl:call-template>
+                        </xsl:attribute>
+                        <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-languages'" /></xsl:call-template>
+                      </xsl:element>
                     </xsl:element>
-                  </xsl:element>
-                  <xsl:element name="span">
-                    <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/languages" />
+                    <xsl:element name="span">
+                      <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/languages" />
+                    </xsl:element>
                   </xsl:element>
                 </xsl:element>
               </xsl:if>
@@ -123,18 +136,21 @@
               <!-- Printed order -->
               <xsl:if test="/buildinfo/document/set/info[@id=$id]/printed != ''">
                 <xsl:element name="div">
-                  <xsl:attribute name="class">row col-md-12</xsl:attribute>
-                  <xsl:element name="span">
-                    <xsl:attribute name="class">detail-label</xsl:attribute>
-                    <xsl:element name="abbr"> <!-- mouseover info text -->
-                      <xsl:attribute name="title">
-                        <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-printed-tooltip'" /></xsl:call-template>
-                      </xsl:attribute>
-                      <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-printed'" /></xsl:call-template>
+                  <xsl:attribute name="class">row</xsl:attribute>
+                  <xsl:element name="div">
+                    <xsl:attribute name="class">col-md-12</xsl:attribute>
+                    <xsl:element name="span">
+                      <xsl:attribute name="class">detail-label</xsl:attribute>
+                      <xsl:element name="abbr"> <!-- mouseover info text -->
+                        <xsl:attribute name="title">
+                          <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-printed-tooltip'" /></xsl:call-template>
+                        </xsl:attribute>
+                        <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-printed'" /></xsl:call-template>
+                      </xsl:element>
                     </xsl:element>
-                  </xsl:element>
-                  <xsl:element name="span">
-                    <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/printed" />
+                    <xsl:element name="span">
+                      <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/printed" />
+                    </xsl:element>
                   </xsl:element>
                 </xsl:element>
               </xsl:if>
@@ -142,13 +158,16 @@
               <!-- Author -->
               <xsl:if test="/buildinfo/document/set/info[@id=$id]/author != ''">
                 <xsl:element name="div">
-                  <xsl:attribute name="class">row col-md-12</xsl:attribute>
-                  <xsl:element name="span">
-                    <xsl:attribute name="class">detail-label</xsl:attribute>
-                    <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-author'" /></xsl:call-template>
-                  </xsl:element>
-                  <xsl:element name="span">
-                    <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/author" />
+                  <xsl:attribute name="class">row</xsl:attribute>
+                  <xsl:element name="div">
+                    <xsl:attribute name="class">col-md-12</xsl:attribute>
+                    <xsl:element name="span">
+                      <xsl:attribute name="class">detail-label</xsl:attribute>
+                      <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-author'" /></xsl:call-template>
+                    </xsl:element>
+                    <xsl:element name="span">
+                      <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/author" />
+                    </xsl:element>
                   </xsl:element>
                 </xsl:element>
               </xsl:if>
@@ -156,13 +175,16 @@
               <!-- License -->
               <xsl:if test="/buildinfo/document/set/info[@id=$id]/license != ''">
                 <xsl:element name="div">
-                  <xsl:attribute name="class">row col-md-12</xsl:attribute>
-                  <xsl:element name="span">
-                    <xsl:attribute name="class">detail-label</xsl:attribute>
-                    <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-license'" /></xsl:call-template>
-                  </xsl:element>
-                  <xsl:element name="span">
-                    <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/license" />
+                  <xsl:attribute name="class">row</xsl:attribute>
+                  <xsl:element name="div">
+                    <xsl:attribute name="class">col-md-12</xsl:attribute>
+                    <xsl:element name="span">
+                      <xsl:attribute name="class">detail-label</xsl:attribute>
+                      <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-license'" /></xsl:call-template>
+                    </xsl:element>
+                    <xsl:element name="span">
+                      <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/license" />
+                    </xsl:element>
                   </xsl:element>
                 </xsl:element>
               </xsl:if>
@@ -170,13 +192,16 @@
               <!-- Year -->
               <xsl:if test="/buildinfo/document/set/info[@id=$id]/year != ''">
                 <xsl:element name="div">
-                  <xsl:attribute name="class">row col-md-12</xsl:attribute>
-                  <xsl:element name="span">
-                    <xsl:attribute name="class">detail-label</xsl:attribute>
-                    <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-year'" /></xsl:call-template>
-                  </xsl:element>
-                  <xsl:element name="span">
-                    <xsl:value-of select="$year"/>
+                  <xsl:attribute name="class">row</xsl:attribute>
+                  <xsl:element name="div">
+                    <xsl:attribute name="class">col-md-12</xsl:attribute>
+                    <xsl:element name="span">
+                      <xsl:attribute name="class">detail-label</xsl:attribute>
+                      <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-year'" /></xsl:call-template>
+                    </xsl:element>
+                    <xsl:element name="span">
+                      <xsl:value-of select="$year"/>
+                    </xsl:element>
                   </xsl:element>
                 </xsl:element>
               </xsl:if>
@@ -184,46 +209,47 @@
               <!-- Source -->
               <xsl:if test="/buildinfo/document/set/info[@id=$id]/source != ''">
                 <xsl:element name="div">
-                  <xsl:attribute name="class">row col-md-12</xsl:attribute>
-                  <xsl:element name="span">
-                    <xsl:attribute name="class">detail-label</xsl:attribute>
-                    <xsl:element name="abbr"> <!-- mouseover info text -->
-                      <xsl:attribute name="title">
-                        <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-source-tooltip'" /></xsl:call-template>
-                      </xsl:attribute>
-                      <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-source'" /></xsl:call-template>
+                  <xsl:attribute name="class">row</xsl:attribute>
+                  <xsl:element name="div">
+                    <xsl:attribute name="class">col-md-12</xsl:attribute>
+                    <xsl:element name="span">
+                      <xsl:attribute name="class">detail-label</xsl:attribute>
+                      <xsl:element name="abbr"> <!-- mouseover info text -->
+                        <xsl:attribute name="title">
+                          <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-source-tooltip'" /></xsl:call-template>
+                        </xsl:attribute>
+                        <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-source'" /></xsl:call-template>
+                      </xsl:element>
                     </xsl:element>
-                  </xsl:element>
-                  <xsl:element name="span">
-                    <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/source" />
+                    <xsl:element name="span">
+                      <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/source" />
+                    </xsl:element>
                   </xsl:element>
                 </xsl:element>
               </xsl:if>
 
+              <!-- TODO: REMOVE if not used -->
               <!-- Printready -->
-              <!-- <xsl:if test="/buildinfo/document/set/info[@id=$id]/printready != ''">
-                <xsl:element name="span">
-                  <xsl:attribute name="style">font-size:0.8em</xsl:attribute>
-                  <xsl:element name="abbr">  -->
-                    <!-- mouseover info text -->
-                    <!-- <xsl:attribute name="title">
-                      <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-printready-tooltip'" /></xsl:call-template>
-                    </xsl:attribute>
-                    <xsl:element name="strong">  -->
-                      <!-- Field name -->
-                      <!-- <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-printready'" /></xsl:call-template>
-                    </xsl:element>  -->
-                    <!-- /strong -->
-                  <!-- </xsl:element>  -->
-                  <!-- /abbr -->
-                  <!-- <xsl:text>: </xsl:text>
-                  <xsl:element name="br"></xsl:element>
-                  <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/printready" />  -->
-                  <!-- Dynamic value of the field -->
-                <!-- </xsl:element>  -->
-                <!-- /span -->
-                <!-- <xsl:element name="br"></xsl:element>
-              </xsl:if> -->
+              <xsl:if test="/buildinfo/document/set/info[@id=$id]/printready != ''">
+                <xsl:element name="div">
+                  <xsl:attribute name="class">row</xsl:attribute>
+                  <xsl:element name="div">
+                    <xsl:attribute name="class">col-md-12</xsl:attribute>
+                    <xsl:element name="span">
+                      <xsl:attribute name="class">detail-label</xsl:attribute>
+                      <xsl:element name="abbr"> <!-- mouseover info text -->
+                        <xsl:attribute name="title">
+                          <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-printready-tooltip'" /></xsl:call-template>
+                        </xsl:attribute>
+                        <xsl:call-template name="fsfe-gettext"><xsl:with-param name="id" select="'stw-printready'" /></xsl:call-template>
+                      </xsl:element>
+                    </xsl:element>
+                    <xsl:element name="span">
+                      <xsl:copy-of select="/buildinfo/document/set/info[@id=$id]/printready" />  -->
+                    </xsl:element>
+                  </xsl:element>
+                </xsl:element>
+              </xsl:if>
 
             </xsl:element>
           </xsl:element>

@@ -1,3 +1,13 @@
+a#go-to-order {
+      margin: 15px 0;
+}
+
+a#go-to-order, #orderpromo input[type=radio]:checked + label, #orderpromo .btn-default:hover {
+    color: #3394CE;
+    background-color: #fff;
+    border-color: #3394CE;
+}
+
 #orderpromo #langprefs .checkbox {
     margin-top: -5px;
 }
@@ -8,12 +18,6 @@
 
 #orderpromo input[type=radio], #orderpromo #defaultorder, #orderpromo #customorder, #orderpromo #customdonation {
     display: none;
-}
-
-#orderpromo input[type=radio]:checked + label, #orderpromo .btn-default:hover {
-    color: #3394CE;
-    background-color: #fff;
-    border-color: #3394CE;
 }
 
 #orderpromo #default:checked ~ #defaultorder, #orderpromo #custom:checked ~ #customorder, #orderpromo #otherdonate:checked ~ #customdonation {
@@ -27,12 +31,14 @@
 
 #orderpromo input[type=submit] {
     .btn-lg;
-    margin: 10px 0;
+    margin: 10px 0 15px;
+    background-color: #3394CE;
+    border-color: #3394CE;
 }
 
 .promoitem {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: 10px 0;
+    padding: 10px 0;
 }
 
 .promoitemdetails {
@@ -44,9 +50,7 @@
 }
 
 .promoitemdetails span.detail-label {
-    padding-right: 10px;
+    padding-right: 15px;
     font-size: 0.8em;
     text-transform: uppercase;
-    // font-weight: 600;
-    // color: #999;
 }
