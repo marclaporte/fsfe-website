@@ -8,6 +8,7 @@
   <!-- dynamic content -->
   <xsl:template match="dynamic-content">
     <xsl:variable name="type"><xsl:value-of select="@type"/></xsl:variable>
+
     <xsl:for-each select="/buildinfo/document/set/item [@type = $type]">
       <xsl:sort select="@order" order="ascending"/>
       <xsl:variable name="id"><xsl:value-of select="@id"/></xsl:variable>
