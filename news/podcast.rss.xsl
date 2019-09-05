@@ -8,7 +8,9 @@
                 xmlns:weekdays="."
                 xmlns:months="."
                 xmlns:content="http://purl.org/rss/1.0/modules/content/"
-                xmlns:atom="http://www.w3.org/2005/Atom">
+                xmlns:atom="http://www.w3.org/2005/Atom"
+                xmlns:psc="http://podlove.org/simple-chapters"
+                xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
 
   <xsl:output method="xml" encoding="utf-8" indent="yes"/>
 
@@ -112,33 +114,56 @@
           <xsl:attribute name="rel">self</xsl:attribute>
           <xsl:attribute name="type">application/rss+xml</xsl:attribute>
         </xsl:element>
+
+        <!-- PODCAST specific information -->
+        <lastBuildDate>
+          <xsl:variable name="timestamp">
+            <xsl:value-of select="/buildinfo/document/timestamp"/>
+          </xsl:variable>
+          <xsl:value-of select="substring-before(substring-after($timestamp, 'Date: '), ' $')"/>
+        </lastBuildDate>
+        <generator>FSFE website build system: podcast.rss.xsl</generator>
+        <itunes:type>episodic</itunes:type>
+        <itunes:owner>
+          <itunes:name>Free Software Foundation Europe (FSFE)</itunes:name>
+          <itunes:email>contact@fsfe.org</itunes:email>
+        </itunes:owner>
+        <itunes:author>Free Software Foundation Europe (FSFE)</itunes:author>
+        <itunes:category text="Technology" />
+        <itunes:category text="News">
+          <itunes:category text="Tech News" />
+        </itunes:category>
+        <itunes:keywords></itunes:keywords>
+        <itunes:image>https://fsfe.org/news/fsfe-news.png</itunes:image>
+        <itunes:pubDate></itunes:pubDate>
+        <itunes:summary>The regular podcast about Software Freedom and ongoing activities hosted by the Free Software Foundation Europe</itunes:summary>
+        <itunes:subtitle>The monthly podcast about Free Software</itunes:subtitle>
+        <itunes:block>no</itunes:block>
+        <itunes:explicit>no</itunes:explicit>
+
         
-        <!-- News items -->
+        <!-- Podcast episodes -->
         <xsl:for-each select="/buildinfo/document/set/news[translate (@date, '-', '') &lt;= translate ($today, '-', '')]">
           <xsl:sort select="@date" order="descending"/>
           <xsl:if test="position() &lt; 11">
             <xsl:element name="item">
-              
-              <!-- guid -->
-              <xsl:element name="guid">
-                <xsl:attribute name="isPermaLink">false</xsl:attribute>
-                <xsl:value-of select="@filename"/>
-              </xsl:element>
-              
-              
               
               <!-- Title -->
               <xsl:element name="title">
                 <xsl:value-of select="title"/>
               </xsl:element>
 
-              <!-- News description -->
+              <!-- Podcast description -->
               <xsl:element name="description">
                 <xsl:copy-of select="normalize-space(body)"/>
                 <xsl:text>Join the FSFE community and support the podcast: https://my.fsfe.org/support?ref=podcast</xsl:text>
               </xsl:element>
+              <xsl:element name="itunes:summary">
+                <xsl:copy-of select="normalize-space(body)"/>
+                <xsl:text>Join the FSFE community and support the podcast: https://my.fsfe.org/support?ref=podcast</xsl:text>
+              </xsl:element>
               
-              <!-- News body -->
+              <!-- Podcast body -->
               <xsl:element name="content:encoded">
                 <xsl:text disable-output-escaping="yes">&lt;![CDATA[</xsl:text>
                 <xsl:choose>
@@ -160,7 +185,7 @@
                 <xsl:text disable-output-escaping="yes">]]&gt;</xsl:text>
               </xsl:element>
               
-              <!-- Link -->
+              <!-- Link and GUID -->
               <xsl:if test="link != ''">
                 <xsl:variable name="link">
                   <xsl:apply-templates select="link">
@@ -169,6 +194,11 @@
                 </xsl:variable>
                 <xsl:element name="link">
                   <xsl:value-of select="normalize-space($link)" />
+                </xsl:element>
+                <!-- guid -->
+                <xsl:element name="guid">
+                  <xsl:attribute name="isPermaLink">false</xsl:attribute>
+                  <xsl:value-of select="normalize-space($link)"/>
                 </xsl:element>
               </xsl:if>
 
@@ -183,6 +213,37 @@
                 <xsl:text> </xsl:text>
                 <xsl:value-of select="substring-before(@date, '-')" />
                 <xsl:text> 00:00:00 +0100</xsl:text>
+              </xsl:element>
+
+              <!-- PODCAST specific information (item) -->
+              <itunes:author>Free Software Foundation Europe (FSFE)</itunes:author>
+              <itunes:explicit>no</itunes:explicit>
+              <itunes:block>no</itunes:block>
+              <itunes:episodeType>full</itunes:episodeType>
+
+              <!-- Episode subtitle -->
+              <xsl:element name="itunes:subtitle">
+                <!-- retrieve the first 200 letters of the first p element after h1 -->
+                <xsl:value-of select="substring(normalize-space(body/h1[1]/following::p[1]),1,200)" />
+              </xsl:element>
+
+              <!-- Duration -->
+              <xsl:element name="itunes:duration">
+              </xsl:element>
+
+              <!-- Episode number -->
+              <xsl:element name="itunes:episode">
+              </xsl:element>              
+
+              <!-- Enclosure (audio file path) -->
+              <xsl:element name="enclosure">
+                <xsl:attribute name="url"></xsl:attribute>
+                <xsl:attribute name="length"></xsl:attribute>
+                <xsl:attribute name="type"></xsl:attribute>
+              </xsl:element>
+
+              <!-- Chapters -->
+              <xsl:element name="psc:chapter">
               </xsl:element>
 
             </xsl:element>
@@ -214,14 +275,6 @@
       
     </xsl:element>
   </xsl:template>
-  
-  <!-- remove newsteaser from <p> -->
-  <xsl:template match="p">
-    <xsl:copy>
-      <xsl:apply-templates select="node()" />
-    </xsl:copy>
-  </xsl:template>
-  
   <!-- as well as images -->
   <xsl:template match="img">
     <xsl:element name="img">
@@ -237,6 +290,13 @@
         </xsl:choose>
       </xsl:attribute>
     </xsl:element>
+  </xsl:template>
+
+  <!-- remove newsteaser from <p> -->
+  <xsl:template match="p">
+    <xsl:copy>
+      <xsl:apply-templates select="node()" />
+    </xsl:copy>
   </xsl:template>
   
   <!-- Do not copy <body-complete> to output at all -->
