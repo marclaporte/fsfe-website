@@ -134,12 +134,12 @@
           <itunes:category text="Tech News" />
         </itunes:category>
         <itunes:keywords></itunes:keywords>
-        <itunes:image>https://fsfe.org/news/fsfe-news.png</itunes:image>
+        <itunes:image href="https://fsfe.org/news/fsfe-news.png" />
         <itunes:pubDate></itunes:pubDate>
         <itunes:summary>The regular podcast about Software Freedom and ongoing activities hosted by the Free Software Foundation Europe</itunes:summary>
         <itunes:subtitle>The monthly podcast about Free Software</itunes:subtitle>
-        <itunes:block>no</itunes:block>
-        <itunes:explicit>no</itunes:explicit>
+        <itunes:block>false</itunes:block>
+        <itunes:explicit>false</itunes:explicit>
 
         
         <!-- Podcast episodes -->
@@ -150,6 +150,9 @@
               
               <!-- Title -->
               <xsl:element name="title">
+                <xsl:value-of select="title"/>
+              </xsl:element>
+              <xsl:element name="itunes:title">
                 <xsl:value-of select="title"/>
               </xsl:element>
 
@@ -217,33 +220,46 @@
 
               <!-- PODCAST specific information (item) -->
               <itunes:author>Free Software Foundation Europe (FSFE)</itunes:author>
-              <itunes:explicit>no</itunes:explicit>
-              <itunes:block>no</itunes:block>
+              <itunes:explicit>false</itunes:explicit>
+              <itunes:block>false</itunes:block>
               <itunes:episodeType>full</itunes:episodeType>
 
               <!-- Episode subtitle -->
               <xsl:element name="itunes:subtitle">
-                <!-- retrieve the first 200 letters of the first p element after h1 -->
-                <xsl:value-of select="substring(normalize-space(body/h1[1]/following::p[1]),1,200)" />
+                <xsl:value-of select="podcast/subtitle"/>
               </xsl:element>
 
               <!-- Duration -->
               <xsl:element name="itunes:duration">
+                <xsl:value-of select="podcast/duration"/>
               </xsl:element>
 
               <!-- Episode number -->
               <xsl:element name="itunes:episode">
-              </xsl:element>              
+                <xsl:value-of select="podcast/episode"/>
+              </xsl:element>
 
               <!-- Enclosure (audio file path) -->
               <xsl:element name="enclosure">
-                <xsl:attribute name="url"></xsl:attribute>
-                <xsl:attribute name="length"></xsl:attribute>
-                <xsl:attribute name="type"></xsl:attribute>
+                <xsl:attribute name="url">
+                  <xsl:value-of select="podcast/file-url"/>
+                </xsl:attribute>
+                <xsl:attribute name="length">
+                  <xsl:value-of select="podcast/file-length"/>
+                </xsl:attribute>
+                <xsl:attribute name="type">
+                  <xsl:value-of select="podcast/file-type"/>
+                </xsl:attribute>
               </xsl:element>
 
               <!-- Chapters -->
-              <xsl:element name="psc:chapter">
+              <xsl:element name="psc:chapters">
+                <xsl:for-each select="podcast/chapters/chapter">
+                  <xsl:element name="psc:chapter">
+                    <xsl:attribute name="time"><xsl:value-of select="@time" /></xsl:attribute>
+                    <xsl:attribute name="title"><xsl:value-of select="." /></xsl:attribute>
+                  </xsl:element>
+                </xsl:for-each>
               </xsl:element>
 
             </xsl:element>
@@ -296,6 +312,12 @@
   <xsl:template match="p">
     <xsl:copy>
       <xsl:apply-templates select="node()" />
+    </xsl:copy>
+  </xsl:template>
+  <!-- Allow other basic styling elements, copy them verbatim -->
+  <xsl:template match="strong|em|ul|ol|li|h1|h2|h3|h4|h5|h6">
+    <xsl:copy>
+      <xsl:apply-templates select="node()"/>
     </xsl:copy>
   </xsl:template>
   

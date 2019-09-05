@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html newsdate="2019-09-01" type="podcast">
 <head>
-  <title>Podcast #1</title>
+  <title>SFP #1: This is the start my friend</title>
 </head>
 <body class="article">
 
 <h1>
-  Podcast episode number 1
+  SFP #1: This is the start my friend
 </h1>
 
 <p newsteaser="yes">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
 
-<p>Some stuff here <a href="http://reuse.software">with links</a>. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+<p>Some stuff here <a href="http://reuse.software">with links</a>. Lorem <strong>ipsum</strong> dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
 
-<p><ul>
+<figure>
+  <img src="/picturebase/miscellaneous/201908-reuse-tool.png" alt="Output of the REUSE helper tool" />
+  <figcaption>Output of the REUSE helper tool</figcaption>
+</figure>
+
+<p>We speak about:</p>
+
+<ul>
   <li>a point</li>
   <li>another point</li>
 </ul>
-</p>
 
-<p>K bye thx!</p>
+<p>K thx bye!</p>
 
 </body>
+
+<!-- Meta data for podcast, update with each episode! -->
+<podcast>
+  <subtitle>This is a max. 255 chars short subtitle</subtitle>
+  <duration>13:37</duration>
+  <episode>1</episode> <!-- number of episode -->
+  <file-url>https://download.fsfe.org/audio/20090331-Greve-Paris.mp3</file-url>
+  <file-length>65161568</file-length> <!-- size of file in bytes -->
+  <file-type>audio/mp3</file-type>
+  <chapters>
+    <chapter time="0:00">Introduction and welcome</chapter>
+    <chapter time="3:20">Topic 1</chapter>
+    <chapter time="20:05">Topic 2 with interview X</chapter>
+  </chapters>
+</podcast>
 
 </html>
 <!--
