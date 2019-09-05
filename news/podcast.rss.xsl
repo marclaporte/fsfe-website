@@ -242,13 +242,13 @@
               <!-- Enclosure (audio file path) -->
               <xsl:element name="enclosure">
                 <xsl:attribute name="url">
-                  <xsl:value-of select="podcast/file-url"/>
+                  <xsl:value-of select="podcast/mp3/url"/>
                 </xsl:attribute>
                 <xsl:attribute name="length">
-                  <xsl:value-of select="podcast/file-length"/>
+                  <xsl:value-of select="podcast/mp3/length"/>
                 </xsl:attribute>
                 <xsl:attribute name="type">
-                  <xsl:value-of select="podcast/file-type"/>
+                  <xsl:text>audio/mp3</xsl:text>
                 </xsl:attribute>
               </xsl:element>
 
