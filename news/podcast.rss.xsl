@@ -145,125 +145,123 @@
         <!-- Podcast episodes -->
         <xsl:for-each select="/buildinfo/document/set/news[translate (@date, '-', '') &lt;= translate ($today, '-', '')]">
           <xsl:sort select="@date" order="descending"/>
-          <xsl:if test="position() &lt; 11">
-            <xsl:element name="item">
-              
-              <!-- Title -->
-              <xsl:element name="title">
-                <xsl:value-of select="title"/>
-              </xsl:element>
-              <xsl:element name="itunes:title">
-                <xsl:value-of select="title"/>
-              </xsl:element>
-
-              <!-- Podcast description -->
-              <xsl:element name="description">
-                <xsl:copy-of select="normalize-space(body)"/>
-                <xsl:text>Join the FSFE community and support the podcast: https://my.fsfe.org/support?ref=podcast</xsl:text>
-              </xsl:element>
-              <xsl:element name="itunes:summary">
-                <xsl:copy-of select="normalize-space(body)"/>
-                <xsl:text>Join the FSFE community and support the podcast: https://my.fsfe.org/support?ref=podcast</xsl:text>
-              </xsl:element>
-              
-              <!-- Podcast body -->
-              <xsl:element name="content:encoded">
-                <xsl:text disable-output-escaping="yes">&lt;![CDATA[</xsl:text>
-                <xsl:choose>
-                  <xsl:when test="body-complete">
-                    <xsl:apply-templates select="body-complete/*"/>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:copy-of select="normalize-space(body)"/>
-                  </xsl:otherwise>
-                </xsl:choose>
-                
-                <xsl:element name="p">
-                  <xsl:element name="a">
-                    <xsl:attribute name="href">https://my.fsfe.org/support?ref=podcast</xsl:attribute>
-                    <xsl:text>Join the FSFE community and support the podcast</xsl:text>
-                  </xsl:element>
-                </xsl:element>
-                
-                <xsl:text disable-output-escaping="yes">]]&gt;</xsl:text>
-              </xsl:element>
-              
-              <!-- Link and GUID -->
-              <xsl:if test="link != ''">
-                <xsl:variable name="link">
-                  <xsl:apply-templates select="link">
-                    <xsl:with-param name="lang" select="$lang" />
-                  </xsl:apply-templates>
-                </xsl:variable>
-                <xsl:element name="link">
-                  <xsl:value-of select="normalize-space($link)" />
-                </xsl:element>
-                <!-- guid -->
-                <xsl:element name="guid">
-                  <xsl:attribute name="isPermaLink">false</xsl:attribute>
-                  <xsl:value-of select="normalize-space($link)"/>
-                </xsl:element>
-              </xsl:if>
-
-              <!-- Date -->
-              <xsl:element name="pubDate">
-                <xsl:value-of select="substring-after(substring-after(@date, '-'), '-')" />
-                <xsl:variable name="month">
-                  <xsl:value-of select="substring-before(substring-after(@date, '-'), '-')" />
-                </xsl:variable>
-                <xsl:text> </xsl:text>
-                <xsl:value-of select="document('')/*/months:month-names/months:month[@ref=$month]" />
-                <xsl:text> </xsl:text>
-                <xsl:value-of select="substring-before(@date, '-')" />
-                <xsl:text> 00:00:00 +0100</xsl:text>
-              </xsl:element>
-
-              <!-- PODCAST specific information (item) -->
-              <itunes:author>Free Software Foundation Europe (FSFE)</itunes:author>
-              <itunes:explicit>false</itunes:explicit>
-              <itunes:block>false</itunes:block>
-              <itunes:episodeType>full</itunes:episodeType>
-
-              <!-- Episode subtitle -->
-              <xsl:element name="itunes:subtitle">
-                <xsl:value-of select="podcast/subtitle"/>
-              </xsl:element>
-
-              <!-- Duration -->
-              <xsl:element name="itunes:duration">
-                <xsl:value-of select="podcast/duration"/>
-              </xsl:element>
-
-              <!-- Episode number -->
-              <xsl:element name="itunes:episode">
-                <xsl:value-of select="podcast/episode"/>
-              </xsl:element>
-
-              <!-- Enclosure (audio file path) -->
-              <xsl:element name="enclosure">
-                <xsl:attribute name="url">
-                  <xsl:value-of select="podcast/mp3/url"/>
-                </xsl:attribute>
-                <xsl:attribute name="length">
-                  <xsl:value-of select="podcast/mp3/length"/>
-                </xsl:attribute>
-                <xsl:attribute name="type">
-                  <xsl:text>audio/mp3</xsl:text>
-                </xsl:attribute>
-              </xsl:element>
-
-              <!-- Chapters -->
-              <xsl:element name="psc:chapters">
-                <xsl:for-each select="podcast/chapters/chapter">
-                  <xsl:element name="psc:chapter">
-                    <xsl:attribute name="time"><xsl:value-of select="@time" /></xsl:attribute>
-                    <xsl:attribute name="title"><xsl:value-of select="." /></xsl:attribute>
-                  </xsl:element>
-                </xsl:for-each>
-              </xsl:element>
-
+          <xsl:element name="item">
+            
+            <!-- Title -->
+            <xsl:element name="title">
+              <xsl:value-of select="title"/>
             </xsl:element>
-          </xsl:if>
+            <xsl:element name="itunes:title">
+              <xsl:value-of select="title"/>
+            </xsl:element>
+
+            <!-- Podcast description -->
+            <xsl:element name="description">
+              <xsl:copy-of select="normalize-space(body)"/>
+              <xsl:text>Join the FSFE community and support the podcast: https://my.fsfe.org/support?ref=podcast</xsl:text>
+            </xsl:element>
+            <xsl:element name="itunes:summary">
+              <xsl:copy-of select="normalize-space(body)"/>
+              <xsl:text>Join the FSFE community and support the podcast: https://my.fsfe.org/support?ref=podcast</xsl:text>
+            </xsl:element>
+            
+            <!-- Podcast body -->
+            <xsl:element name="content:encoded">
+              <xsl:text disable-output-escaping="yes">&lt;![CDATA[</xsl:text>
+              <xsl:choose>
+                <xsl:when test="body-complete">
+                  <xsl:apply-templates select="body-complete/*"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:copy-of select="normalize-space(body)"/>
+                </xsl:otherwise>
+              </xsl:choose>
+              
+              <xsl:element name="p">
+                <xsl:element name="a">
+                  <xsl:attribute name="href">https://my.fsfe.org/support?ref=podcast</xsl:attribute>
+                  <xsl:text>Join the FSFE community and support the podcast</xsl:text>
+                </xsl:element>
+              </xsl:element>
+              
+              <xsl:text disable-output-escaping="yes">]]&gt;</xsl:text>
+            </xsl:element>
+            
+            <!-- Link and GUID -->
+            <xsl:if test="link != ''">
+              <xsl:variable name="link">
+                <xsl:apply-templates select="link">
+                  <xsl:with-param name="lang" select="$lang" />
+                </xsl:apply-templates>
+              </xsl:variable>
+              <xsl:element name="link">
+                <xsl:value-of select="normalize-space($link)" />
+              </xsl:element>
+              <!-- guid -->
+              <xsl:element name="guid">
+                <xsl:attribute name="isPermaLink">false</xsl:attribute>
+                <xsl:value-of select="normalize-space($link)"/>
+              </xsl:element>
+            </xsl:if>
+
+            <!-- Date -->
+            <xsl:element name="pubDate">
+              <xsl:value-of select="substring-after(substring-after(@date, '-'), '-')" />
+              <xsl:variable name="month">
+                <xsl:value-of select="substring-before(substring-after(@date, '-'), '-')" />
+              </xsl:variable>
+              <xsl:text> </xsl:text>
+              <xsl:value-of select="document('')/*/months:month-names/months:month[@ref=$month]" />
+              <xsl:text> </xsl:text>
+              <xsl:value-of select="substring-before(@date, '-')" />
+              <xsl:text> 00:00:00 +0100</xsl:text>
+            </xsl:element>
+
+            <!-- PODCAST specific information (item) -->
+            <itunes:author>Free Software Foundation Europe (FSFE)</itunes:author>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:block>false</itunes:block>
+            <itunes:episodeType>full</itunes:episodeType>
+
+            <!-- Episode subtitle -->
+            <xsl:element name="itunes:subtitle">
+              <xsl:value-of select="podcast/subtitle"/>
+            </xsl:element>
+
+            <!-- Duration -->
+            <xsl:element name="itunes:duration">
+              <xsl:value-of select="podcast/duration"/>
+            </xsl:element>
+
+            <!-- Episode number -->
+            <xsl:element name="itunes:episode">
+              <xsl:value-of select="podcast/episode"/>
+            </xsl:element>
+
+            <!-- Enclosure (audio file path) -->
+            <xsl:element name="enclosure">
+              <xsl:attribute name="url">
+                <xsl:value-of select="podcast/mp3/url"/>
+              </xsl:attribute>
+              <xsl:attribute name="length">
+                <xsl:value-of select="podcast/mp3/length"/>
+              </xsl:attribute>
+              <xsl:attribute name="type">
+                <xsl:text>audio/mp3</xsl:text>
+              </xsl:attribute>
+            </xsl:element>
+
+            <!-- Chapters -->
+            <xsl:element name="psc:chapters">
+              <xsl:for-each select="podcast/chapters/chapter">
+                <xsl:element name="psc:chapter">
+                  <xsl:attribute name="start"><xsl:value-of select="@start" /></xsl:attribute>
+                  <xsl:attribute name="title"><xsl:value-of select="." /></xsl:attribute>
+                </xsl:element>
+              </xsl:for-each>
+            </xsl:element>
+
+          </xsl:element>
         </xsl:for-each>
 
         <!-- Footer -->
