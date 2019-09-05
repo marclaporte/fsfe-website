@@ -48,16 +48,16 @@
       <xsl:value-of select="normalize-space(.)" />
     </xsl:variable>
 
-    <!-- Add leading "http://fsfe.org" if necessary -->
+    <!-- Add leading "https://fsfe.org" if necessary -->
     <xsl:variable name="full-link">
       <xsl:choose>
-        <xsl:when test="starts-with ($link, 'http:')">
+        <xsl:when test="starts-with ($link, 'https:')">
           <xsl:value-of select="$link" />
         </xsl:when>
         <xsl:when test="starts-with ($link, 'https:')">
           <xsl:value-of select="$link" />
         </xsl:when>
-        <xsl:otherwise>http://fsfe.org<xsl:value-of select="$link" />
+        <xsl:otherwise>https://fsfe.org<xsl:value-of select="$link" />
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
@@ -92,25 +92,23 @@
     <!-- Header -->
     <rss version="2.0">
       <channel>
-        <title>FSFE News</title>
-        <description>News from the Free Software Foundation Europe</description>
-        <link>http://fsfe.org/news/</link>
+        <title>Software Freedom Podcast</title>
+        <description>The regular podcast about Software Freedom and ongoing activities hosted by the Free Software Foundation Europe</description>
+        <link>https://fsfe.org/news/podcast</link>
         <language><xsl:value-of select="$lang" /></language>
-        <copyright>Copyright (c) Free Software Foundation Europe. Verbatim copying and distribution
-          of this entire article is permitted in any medium, provided this
-          notice is preserved.</copyright>
+        <copyright>Copyright (c) Free Software Foundation Europe. Creative Commons BY-SA 4.0</copyright>
         <managingEditor>press@fsfe.org (FSFE Press Team)</managingEditor>
         <webMaster>web@lists.fsfe.org (FSFE Webmaster Team)</webMaster>
         <image>
-          <url>http://fsfe.org/news/fsfe-news.png</url>
-          <title>FSFE News</title>
+          <url>https://fsfe.org/news/fsfe-news.png</url>
+          <title>Software Freedom Podcast</title>
           <width>88</width>
           <height>31</height>
-          <link>http://fsfe.org/news/</link>
+          <link>https://fsfe.org/news/podcast</link>
         </image>
         
         <xsl:element name="atom:link">
-          <xsl:attribute name="href">http://fsfe.org/news/news.<xsl:value-of select="$lang"/>.rss</xsl:attribute>
+          <xsl:attribute name="href">https://fsfe.org/news/podcast.<xsl:value-of select="$lang"/>.rss</xsl:attribute>
           <xsl:attribute name="rel">self</xsl:attribute>
           <xsl:attribute name="type">application/rss+xml</xsl:attribute>
         </xsl:element>
@@ -137,7 +135,7 @@
               <!-- News description -->
               <xsl:element name="description">
                 <xsl:copy-of select="normalize-space(body)"/>
-                <xsl:text>Support FSFE: https://my.fsfe.org/support</xsl:text>
+                <xsl:text>Join the FSFE community and support the podcast: https://my.fsfe.org/support?ref=podcast</xsl:text>
               </xsl:element>
               
               <!-- News body -->
@@ -154,8 +152,8 @@
                 
                 <xsl:element name="p">
                   <xsl:element name="a">
-                    <xsl:attribute name="href">https://my.fsfe.org/support</xsl:attribute>
-                    <xsl:text>Support FSFE</xsl:text>
+                    <xsl:attribute name="href">https://my.fsfe.org/support?ref=podcast</xsl:attribute>
+                    <xsl:text>Join the FSFE community and support the podcast</xsl:text>
                   </xsl:element>
                 </xsl:element>
                 
@@ -203,7 +201,7 @@
       <xsl:attribute name="href">
         <xsl:choose>
           <xsl:when test="substring(@href,1,1) = '/'">
-            <xsl:text>http://fsfe.org</xsl:text>
+            <xsl:text>https://fsfe.org</xsl:text>
             <xsl:value-of select="@href" />
           </xsl:when>
           <xsl:otherwise>
@@ -230,7 +228,7 @@
       <xsl:attribute name="src">
         <xsl:choose>
           <xsl:when test="substring(@src,1,1) = '/'">
-            <xsl:text>http://fsfe.org</xsl:text>
+            <xsl:text>https://fsfe.org</xsl:text>
             <xsl:value-of select="@src" />
           </xsl:when>
           <xsl:otherwise>
