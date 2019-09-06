@@ -133,9 +133,8 @@
         <itunes:category text="News">
           <itunes:category text="Tech News" />
         </itunes:category>
-        <itunes:keywords></itunes:keywords>
+        <itunes:keywords>free software, open source, libre, foss, floss, oss, programming, policy, talk, interview, news, tech, technology, freedom, liberty, fsfe, fsf, foundation</itunes:keywords>
         <itunes:image href="https://fsfe.org/news/fsfe-news.png" />
-        <itunes:pubDate></itunes:pubDate>
         <itunes:summary>The regular podcast about Software Freedom and ongoing activities hosted by the Free Software Foundation Europe</itunes:summary>
         <itunes:subtitle>The monthly podcast about Free Software</itunes:subtitle>
         <itunes:block>false</itunes:block>
