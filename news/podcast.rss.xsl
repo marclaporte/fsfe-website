@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- XSL stylesheet for generation RSS feeds.  It's currently using RSS 2.0. -->
+<!-- XSL stylesheet for generating podcast RSS feeds -->
 
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -86,6 +86,7 @@
   </xsl:template>
   
   <xsl:template match="/buildinfo/document">
+    <xsl:param name="audioformat" select="'mp3'" />
     <!-- Language -->
     <xsl:variable name="lang">
       <xsl:value-of select="@language" />
@@ -240,13 +241,14 @@
             <!-- Enclosure (audio file path) -->
             <xsl:element name="enclosure">
               <xsl:attribute name="url">
-                <xsl:value-of select="podcast/mp3/url"/>
+                <xsl:value-of select="podcast/*[name()=$audioformat]/url"/>
               </xsl:attribute>
               <xsl:attribute name="length">
-                <xsl:value-of select="podcast/mp3/length"/>
+                <xsl:value-of select="podcast/*[name()=$audioformat]/length"/>
               </xsl:attribute>
               <xsl:attribute name="type">
-                <xsl:text>audio/mp3</xsl:text>
+                <xsl:text>audio/</xsl:text>
+                <xsl:value-of select="$audioformat" />
               </xsl:attribute>
             </xsl:element>
 
