@@ -27,13 +27,6 @@
       </p>
     </xsl:for-each>
   </xsl:template>
-  
-  <!-- TODO: translated sentence "receive-podcast"-->
-  <xsl:template match="receive-podcast">
-    <xsl:call-template name="gettext">
-      <xsl:with-param name="id" select="'receive-podcast'" />
-    </xsl:call-template>
-  </xsl:template>
 
 </xsl:stylesheet>
 
