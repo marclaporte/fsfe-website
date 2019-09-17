@@ -29,6 +29,29 @@
       </xsl:element>
       <xsl:text>Your browser dows not support the audio element.</xsl:text>
     </xsl:element>
+
+    <!-- Download -->
+    <xsl:element name="p">
+      <xsl:element name="em">
+        <xsl:call-template name="gettext">
+          <xsl:with-param name="id" select="'download'" />
+        </xsl:call-template>
+      </xsl:element>
+      <xsl:text>: </xsl:text>
+      <xsl:element name="a">
+        <xsl:attribute name="href">
+          <xsl:value-of select="/buildinfo/document/podcast/ogg/url" />
+        </xsl:attribute>
+        OGG
+      </xsl:element>
+      <xsl:text> | </xsl:text>
+      <xsl:element name="a">
+        <xsl:attribute name="href">
+          <xsl:value-of select="/buildinfo/document/podcast/mp3/url" />
+        </xsl:attribute>
+        MP3
+      </xsl:element>
+    </xsl:element>
   </xsl:template>
   
 </xsl:stylesheet> 
