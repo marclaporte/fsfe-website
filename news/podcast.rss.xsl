@@ -86,7 +86,21 @@
   </xsl:template>
   
   <xsl:template match="/buildinfo/document">
-    <xsl:param name="audioformat" select="'mp3'" />
+
+    <!-- param audioformat mp3 or ogg (or none), set variable $format -->
+    <xsl:param name="audioformat" />
+    <xsl:variable name="format">
+      <xsl:choose>
+        <!-- default format is mp3 -->
+        <xsl:when test="$audioformat = ''">
+          <xsl:text>mp3</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$audioformat" />
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
     <!-- Language -->
     <xsl:variable name="lang">
       <xsl:value-of select="@language" />
@@ -111,7 +125,16 @@
         </image>
         
         <xsl:element name="atom:link">
-          <xsl:attribute name="href">https://fsfe.org/news/podcast.<xsl:value-of select="$lang"/>.rss</xsl:attribute>
+          <xsl:attribute name="href">
+            <xsl:text>https://fsfe.org/news/podcast</xsl:text>
+            <xsl:choose>
+              <xsl:when test="$format != 'mp3'">
+                <xsl:text>-</xsl:text>
+                <xsl:value-of select="$format" />
+              </xsl:when>
+            </xsl:choose>
+            <xsl:text>.</xsl:text>
+            <xsl:value-of select="$lang"/>.rss</xsl:attribute>
           <xsl:attribute name="rel">self</xsl:attribute>
           <xsl:attribute name="type">application/rss+xml</xsl:attribute>
         </xsl:element>
@@ -241,14 +264,14 @@
             <!-- Enclosure (audio file path) -->
             <xsl:element name="enclosure">
               <xsl:attribute name="url">
-                <xsl:value-of select="podcast/*[name()=$audioformat]/url"/>
+                <xsl:value-of select="podcast/*[name()=$format]/url"/>
               </xsl:attribute>
               <xsl:attribute name="length">
-                <xsl:value-of select="podcast/*[name()=$audioformat]/length"/>
+                <xsl:value-of select="podcast/*[name()=$format]/length"/>
               </xsl:attribute>
               <xsl:attribute name="type">
                 <xsl:text>audio/</xsl:text>
-                <xsl:value-of select="$audioformat" />
+                <xsl:value-of select="$format" />
               </xsl:attribute>
             </xsl:element>
 
