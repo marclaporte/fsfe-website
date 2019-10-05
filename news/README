@@ -34,7 +34,7 @@ Add an xhtml file in the appropriate directory.
 
 Write an ordinary xhtml file. Add the newsdate="date" attribute in the
 xhtml tag. The paragraph that has to be copied into the xml file
-should be marked with the newsteaser="yes" attribute.
+should be marked with the newsteaser class.
 
 (eg:
 
@@ -50,7 +50,7 @@ should be marked with the newsteaser="yes" attribute.
 
 .....
 
-<p newsteaser="yes">this is the paragraph that will be copied into the
+<p class="newsteaser">this is the paragraph that will be copied into the
 xml file. <p>
 
 ....

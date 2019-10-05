@@ -16,29 +16,29 @@
 
     <xsl:element name="newsset">
       <xsl:element name="news">
-        
+
         <xsl:attribute name="date">
           <xsl:value-of select="/html/@newsdate"/>
         </xsl:attribute>
-        
+
         <xsl:if test="/html/@type">
           <xsl:attribute name ="type">
             <xsl:value-of select="/html/@type"/>
           </xsl:attribute>
         </xsl:if>
-	
+
         <xsl:element name="title">
           <xsl:value-of select="/html/head/title"/>
         </xsl:element>
 
         <xsl:element name="body">
-          <xsl:value-of select="/html/body/p[@newsteaser]"/>
+          <xsl:value-of select="/html/body/p[contains(@class, 'newsteaser')]"/>
         </xsl:element>
-	
+
         <xsl:element name="body-complete">
           <xsl:copy-of select="/html/body/node()"/>
         </xsl:element>
-	
+
         <xsl:element name="link">
           <xsl:variable name="the_link">
             <xsl:value-of select="/html/@link"/>
@@ -52,10 +52,10 @@
             </xsl:otherwise>
           </xsl:choose>
         </xsl:element>
-        
+
         <xsl:copy-of select="/html/tags" />
         <xsl:copy-of select="/html/author" />
-      
+
       </xsl:element>
     </xsl:element>
   </xsl:template>
