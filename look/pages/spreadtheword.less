@@ -3,19 +3,19 @@
     clear: both;
   }
 
-  .noclear {
-    clear: none;
+  input[name="city"] {
+    max-width: 100%;
+  }
+
+  #country {
+    width: 100%;
   }
 
   div#toc {
-    float: right;
-    clear: right;
-    border: solid 1px;
-    margin: .5em;
     background: rgb(240, 240, 240);
-    width: 40%;
+    border: solid 1px;
+    margin: 1.5em 0;
     padding: 1em 1.5em 1.5em 1.5em;
-    margin: 1.5em;
   }
 
   div#toc p {
@@ -31,9 +31,8 @@
   }
 
   form#orderpromo {
-    clear: both;
-    margin: 2em 0 3em 0;
-    width: 70%;
+    box-sizing: border-box;
+    margin: 2em 0 3em;
   }
 
   form#orderpromo div {
@@ -44,24 +43,25 @@
     font-weight: normal;
   }
 
-  form#orderpromo div > label,
-  form#orderpromo div > input,
-  form#orderpromo div > textarea {
-    margin-left: 20px;
+  textarea {
+    width: 100%;
   }
 
-  div.langselector ul {
-    list-style: none;
+  .langselector {
+
+    .row > div {
+      margin-bottom: 0 !important;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
   }
 
   form#orderpromo input[type="checkbox"],
   form#orderpromo input[type="radio"] {
     margin-right: 0.3em;
-  }
-
-  div.langselector li {
-    display: inline-block;
-    width: 9em;
   }
 
   form#orderpromo .reveal {
@@ -103,5 +103,14 @@
 
   form#orderpromo .input-group-addon {
     padding: 6px 12px 6px 30px;
+  }
+
+  @media (min-width: @screen-md-min) {
+
+    form#orderpromo div > label,
+    form#orderpromo div > input,
+    form#orderpromo div > textarea {
+      margin-left: 20px;
+    }
   }
 }
