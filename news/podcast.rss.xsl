@@ -87,7 +87,7 @@
   
   <xsl:template match="/buildinfo/document">
 
-    <!-- param audioformat mp3 or opus (or none), set variable $format -->
+    <!-- param audioformat mp3 or opus (or none), set variable $format and $alternateformat -->
     <xsl:param name="audioformat" />
     <xsl:variable name="format">
       <xsl:choose>
@@ -97,6 +97,16 @@
         </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select="$audioformat" />
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="alternateformat">
+      <xsl:choose>
+        <xsl:when test="$format = 'mp3'">
+          <xsl:text>opus</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>mp3</xsl:text>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
@@ -123,7 +133,8 @@
           <height>31</height>
           <link>https://fsfe.org/news/podcast</link>
         </image>
-        
+
+        <!-- self and alternate feeds (atom:link -->
         <xsl:element name="atom:link">
           <xsl:attribute name="href">
             <xsl:text>https://fsfe.org/news/podcast</xsl:text>
@@ -137,6 +148,22 @@
             <xsl:value-of select="$lang"/>.rss</xsl:attribute>
           <xsl:attribute name="rel">self</xsl:attribute>
           <xsl:attribute name="type">application/rss+xml</xsl:attribute>
+          <xsl:attribute name="title">Software Freedom Podcast (<xsl:value-of select="$format"/> Audio)</xsl:attribute>
+        </xsl:element>
+        <xsl:element name="atom:link">
+          <xsl:attribute name="href">
+            <xsl:text>https://fsfe.org/news/podcast</xsl:text>
+            <xsl:choose>
+              <xsl:when test="$alternateformat != 'mp3'">
+                <xsl:text>-</xsl:text>
+                <xsl:value-of select="$alternateformat" />
+              </xsl:when>
+            </xsl:choose>
+            <xsl:text>.</xsl:text>
+            <xsl:value-of select="$lang"/>.rss</xsl:attribute>
+          <xsl:attribute name="rel">alternate</xsl:attribute>
+          <xsl:attribute name="type">application/rss+xml</xsl:attribute>
+          <xsl:attribute name="title">Software Freedom Podcast (<xsl:value-of select="$alternateformat"/> Audio)</xsl:attribute>
         </xsl:element>
 
         <!-- PODCAST specific information -->
