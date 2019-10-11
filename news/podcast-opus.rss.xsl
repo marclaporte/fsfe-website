@@ -7,7 +7,7 @@
 
   <xsl:template match="/">
     <xsl:apply-templates select="/buildinfo/document">
-      <xsl:with-param name="audioformat" select="'ogg'" />
+      <xsl:with-param name="audioformat" select="'opus'" />
     </xsl:apply-templates>
   </xsl:template>
 

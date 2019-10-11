@@ -8,17 +8,17 @@
   <xsl:import href="../../fsfe.xsl" />
   <xsl:output method="html" encoding="utf-8" indent="yes" doctype-system="about:legacy-compat" />
 
-  <!-- Podcast audio player for both MP3 and OGG -->
+  <!-- Podcast audio player for both MP3 and OPUS -->
   <xsl:template match="audio-player">
     <xsl:element name="audio">
       <xsl:attribute name="controls" />
       <xsl:attribute name="style">width:100%;</xsl:attribute>
-      <!-- OGG -->
+      <!-- OPUS -->
       <xsl:element name="source">
         <xsl:attribute name="src">
-          <xsl:value-of select="/buildinfo/document/podcast/ogg/url" />
+          <xsl:value-of select="/buildinfo/document/podcast/opus/url" />
         </xsl:attribute>
-        <xsl:attribute name="type">audio/ogg</xsl:attribute>
+        <xsl:attribute name="type">audio/opus</xsl:attribute>
       </xsl:element>
       <!-- MP3 -->
       <xsl:element name="source">
@@ -40,9 +40,9 @@
       <xsl:text>: </xsl:text>
       <xsl:element name="a">
         <xsl:attribute name="href">
-          <xsl:value-of select="/buildinfo/document/podcast/ogg/url" />
+          <xsl:value-of select="/buildinfo/document/podcast/opus/url" />
         </xsl:attribute>
-        OGG
+        OPUS
       </xsl:element>
       <xsl:text> | </xsl:text>
       <xsl:element name="a">

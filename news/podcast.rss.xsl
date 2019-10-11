@@ -87,7 +87,7 @@
   
   <xsl:template match="/buildinfo/document">
 
-    <!-- param audioformat mp3 or ogg (or none), set variable $format -->
+    <!-- param audioformat mp3 or opus (or none), set variable $format -->
     <xsl:param name="audioformat" />
     <xsl:variable name="format">
       <xsl:choose>
