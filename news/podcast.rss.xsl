@@ -127,7 +127,7 @@
         <managingEditor>press@fsfe.org (FSFE Press Team)</managingEditor>
         <webMaster>web@lists.fsfe.org (FSFE Webmaster Team)</webMaster>
         <image>
-          <url>https://fsfe.org/news/fsfe-news.png</url>
+          <url>https://fsfe.org/graphics/podcast-logo.png</url>
           <title>Software Freedom Podcast</title>
           <width>88</width>
           <height>31</height>
@@ -185,7 +185,7 @@
           <itunes:category text="Tech News" />
         </itunes:category>
         <itunes:keywords>free software, open source, libre, foss, floss, oss, programming, policy, talk, interview, news, tech, technology, freedom, liberty, fsfe, fsf, foundation</itunes:keywords>
-        <itunes:image href="https://fsfe.org/news/fsfe-news.png" />
+        <itunes:image href="https://fsfe.org/graphics/podcast-logo.png" />
         <itunes:summary>The regular podcast about Software Freedom and ongoing activities hosted by the Free Software Foundation Europe</itunes:summary>
         <itunes:subtitle>The monthly podcast about Free Software</itunes:subtitle>
         <itunes:block>false</itunes:block>
