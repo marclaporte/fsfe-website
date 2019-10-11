@@ -18,7 +18,7 @@
         <xsl:attribute name="src">
           <xsl:value-of select="/buildinfo/document/podcast/opus/url" />
         </xsl:attribute>
-        <xsl:attribute name="type">audio/opus</xsl:attribute>
+        <xsl:attribute name="type">audio/ogg;codecs=opus</xsl:attribute>
       </xsl:element>
       <!-- MP3 -->
       <xsl:element name="source">
