@@ -112,6 +112,7 @@
   <text id="learn-more">Learn more</text>
   <text id="press">Press</text>
   <text id="newsletter">Newsletter</text>
+  <text id="podcast">Podcast</text>
 
   <text id="go-to">Go to:</text>
   <text id="search">Search</text>
@@ -134,7 +135,6 @@
   <text id="menu">Menu</text>
   <text id="content">Content</text>
   <text id="page-info">Page info</text>
-  <text id="rootpage">Home</text>
   <text id="sitemap">Sitemap</text>
   <text id="go-top">Go to the top</text>
   <text id="source">Source code</text>
@@ -145,7 +145,7 @@
   <text id="privacy-policy">Privacy Policy</text>
   <text id="transparency-commitment">Transparency Commitment</text>
   <text id="tags">Tags</text>
-  <text id="discuss-article">Discuss this article</text>
+  <text id="discuss-article">Discuss this</text>
 
 
   <!-- Article metadata -->

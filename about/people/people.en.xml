@@ -184,11 +184,7 @@
 
   <person id="coughlan">
     <name>Shane M. Coughlan</name>
-    <country>JP</country>
-    <team>ga</team>
-    <team>ftf</team>
     <email>shane (at) fsfe (dot) org</email>
-    <link>https://jp.linkedin.com/in/shanecoughlan</link>
     <avatar>/about/coughlan/coughlan-avatar.jpg</avatar>
   </person>
 
@@ -255,13 +251,7 @@
 
   <person id="eiswirt">
     <name>Susanne Eiswirt</name>
-    <country>DE</country>
-    <function>project-manager/f</function>
-    <team>core</team>
-    <email>susanne (at) fsfe (dot) org</email>
-    <link>/about/eiswirt/eiswirt.html</link>
     <avatar>/about/eiswirt/eiswirt-avatar.jpg</avatar>
-    <employee>full/f</employee>
   </person>
 
   <person id="feltrin">
@@ -408,7 +398,6 @@
     <team>kiel</team>
     <email>softmetz (at) fsfe (dot) org</email>
     <link>http://www.softmetz.de/</link>
-    <avatar>/fellowship/graphics/people/christiankalkhoff-avatar.jpg</avatar>
   </person>
 
   <person id="keijzer">
@@ -432,7 +421,6 @@
     <function group="bonn">coordinator/m</function>
     <team>bonn</team>
     <email>mkesper (at) fsfe (dot) org</email>
-    <avatar>/fellowship/graphics/people/michaelkesper-avatar.jpg</avatar>
   </person>
 
   <person id="kirschner">
@@ -472,6 +460,13 @@
     <name>Lucas Lasota</name>
     <email>lucas.lasota (at) fsfe (dot) org</email>
     <employee>intern/m</employee>
+    <team>intern</team>
+  </person>
+
+  <person id="mehring">
+    <name>Bonnie Mehring</name>
+    <email>bonnie (at) fsfe (dot) org</email>
+    <employee>intern/f</employee>
     <team>intern</team>
   </person>
 
@@ -618,9 +613,11 @@
     <name>André Ockers</name>
     <country>NL</country>
     <function volunteers="translators-nl">deputy/m</function>
+    <function country="NL">deputy/m</function>
     <team>core</team>
     <team>translation-coordinators</team>
     <email>ao (at) fsfe (dot) org</email>
+    <avatar>/about/ockers/ockers-avatar.jpg</avatar>
   </person>
 
   <person id="ohnewein">
@@ -684,6 +681,16 @@
     <avatar>/about/rigamonti/rigamonti-avatar.jpg</avatar>
   </person>
 
+  <person id="rikken">
+    <name>Nico Rikken</name>
+    <country>NL</country>
+    <function country="NL">coordinator/m</function>
+    <team>core</team>
+    <team>nl</team>
+    <email>nico.rikken (at) fsfe (dot) org</email>
+    <avatar>/about/rikken/rikken-avatar.jpg</avatar>
+  </person>
+
   <person id="roussos">
     <name>Nikos Roussos</name>
     <country>GR</country>
@@ -700,8 +707,8 @@
   <person id="roy">
     <name>Hugo Roy</name>
     <country>FR</country>
-    <team>ga</team>
     <team>fr</team>
+    <team>core</team>
     <team>paris</team>
     <team>ftf</team>
     <function country="FR">coordinator/m</function>
@@ -729,7 +736,7 @@
   <person id="sander">
     <name>Alexander Sander</name>
     <country>DE</country>
-    <function>policy-analyst/m</function>
+    <function>policy-manager/m</function>
     <team>core</team>
     <email>alex.sander (at) fsfe (dot) org</email>
     <link>/about/sander/sander.html</link>
@@ -784,8 +791,8 @@
     <function>office/f</function>
     <team>ga</team>
     <email>usli (at) fsfe (dot) org</email>
+    <employee>part/f</employee> 
     <avatar>/about/sliwinski/sliwinski.png</avatar>
-    <employee>full/f</employee>
   </person>
 
   <person id="snow">
@@ -804,8 +811,6 @@
   <person id="stegerman">
     <name>Felix Stegerman</name>
     <country>NL</country>
-    <function country="NL">deputy/m</function>
-    <team>core</team>
     <team>nl</team>
     <email>flx (at) fsfe (dot) org</email>
     <link>https://wiki.fsfe.org/Fellows/flx</link>
@@ -845,14 +850,11 @@
     <team>berlin</team>
     <email>tomasz (at) fsfe (dot) org</email>
     <function group="berlin">coordinator/m</function>
-    <avatar>/fellowship/graphics/people/tomaszerolo-avatar.jpg</avatar>
   </person>
 
   <person id="verheesen">
     <name>Maurice Verheesen</name>
     <country>NL</country>
-    <function country="NL">coordinator/m</function>
-    <team>core</team>
     <team>nl</team>
     <email>mho (at) fsfe (dot) org</email>
     <link>http://mauriceverheesen.nl/</link>

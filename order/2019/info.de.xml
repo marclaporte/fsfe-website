@@ -2,11 +2,50 @@
 
 <infoset>
   <info id="tshirt-pmpc-black">
-    <name>T-Shirt “Public Money? Public Code!”, schwarz</name>
+    <name>T-Shirt „Public Money? Public Code!“, schwarz</name>
     <description>
       <p>
         Das T-Shirt zur Kampagne:
         <a href="/campaigns/publiccode/publiccode.html">Public Money? Public Code!</a>
+      </p>
+    </description>
+  </info>
+  <info id="gymsac-nocloud-black">
+    <name>Turnbeutel „There is NO CLOUD“, schwarz</name>
+    <description>
+      <p>
+        Man kann sich fit halten und gleichzeitig eine Botschaft verbreiten.
+      </p>
+    </description>
+  </info>
+
+  <info id="zipped-fsfs-blue">
+    <name>Sweatshirt-Jacke „Free Software Free Society“, blau</name>
+    <description>
+      <p>
+        Damit man sich auch an kalten Tagen für eine freie Gesellschaft einsetzen kann.
+      </p>
+      <p>
+        <strong>Achtung:</strong> Die Größen sind größer als üblich. Beachten
+        Sie bitte die <a href="size.html">Größentabelle</a>.
+      </p>
+    </description>
+  </info>
+
+  <info id="pin-fsfe-white">
+    <name>FSFE-Logo-Anstecknadel</name>
+    <description>
+      <p>
+        Eine Anstecknadel (10x18mm) mit dem Logo der FSFE.
+      </p>
+    </description>
+  </info>
+
+  <info id="magnetpin-fsfe-white">
+    <name>FSFE-Logo-Ansteckmagnet</name>
+    <description>
+      <p>
+        Ein Ansteckmagnet (10x18mm) mit dem Logo der FSFE – macht keine Löcher in die Kleidung.
       </p>
     </description>
   </info>
